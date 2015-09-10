@@ -1,0 +1,38 @@
+{
+  "name": "fluxlet-immutable",
+  "version": "0.0.1",
+  "description": "Immutable state utilities for Fluxlet",
+  "main": "src/immutable.js",
+  "dependencies": {
+    "lodash.clone": "^3.0.3",
+    "lodash.foreach": "^3.0.3",
+    "lodash.isequal": "^3.0.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "groc": "^0.8.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-browserify": "^4.3.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-cli": "^0.1.0",
+    "karma-jasmine": "^0.3.6",
+    "wallabify": "^0.0.9"
+  },
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.adaptavist.com:7999/crap/fluxlet-immutable.git"
+  },
+  "keywords": [
+    "fluxlet",
+    "immutable"
+  ],
+  "author": "Mark Gibson <mgibson@adaptavist.com>",
+  "license": "MIT"
+}
