@@ -10,7 +10,7 @@ export function deepFreeze(v) {
 /**
  * Freeze an object/array
  */
-export function freeze(deep, v) {
+export function freeze(v) {
   return enableFreeze ? doFreeze(false, v) : v
 }
 
