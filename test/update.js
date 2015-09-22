@@ -117,4 +117,9 @@ describe("update", () => {
       })(state)
       expect(newState.keyArray[3].deepKey).toBe("one")
     })
+
+    it("returns the same object if nothing changed", () => {
+      var newState = update(["key1"], val => val)(state)
+      expect(newState).toBe(state)
+    })
 })
