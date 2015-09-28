@@ -1,4 +1,11 @@
 
+// # cloneAndSet
+//
+// Performs a shallow clone of an object or array, but replacing one value within it.
+// Any other non-object or array value passed in as the container is just returned as it.
+//
+// If the value arg is undefined then the property/item will not be added to the clone at all.
+//
 export function cloneAndSet(container, key, value) {
   if (Array.isArray(container)) {
     return cloneArray(container, key, value)
