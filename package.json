@@ -23,9 +23,8 @@
     "test": "karma start --single-run"
   },
   "jspm": {
-    "registry": "jspm",
-    "format": "es6",
     "main": "src/index",
+    "format": "es6",
     "directories": {
       "lib": "src"
     },
