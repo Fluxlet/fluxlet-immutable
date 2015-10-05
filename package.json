@@ -2,7 +2,7 @@
   "name": "fluxlet-immutable",
   "version": "0.0.1",
   "description": "Immutable state utilities for Fluxlet",
-  "main": "index",
+  "main": "lib/index",
   "registry": "jspm",
   "dependencies": {},
   "devDependencies": {
@@ -18,11 +18,14 @@
     "karma-jspm": "^2.0.1"
   },
   "scripts": {
+    "prepublish": "babel -d lib src",
     "postinstall": "jspm install",
     "test": "karma start --single-run"
   },
   "jspm": {
+    "registry": "jspm",
     "format": "es6",
+    "main": "src/index",
     "directories": {
       "lib": "src"
     },
@@ -33,10 +36,7 @@
       "core-js": "npm:core-js@^1.1.4"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@stash.adaptavist.com:7999/crap/fluxlet-immutable.git"
-  },
+  "repository": "fluxlet/fluxlet-immutable",
   "keywords": [
     "fluxlet",
     "immutable"
