@@ -19,12 +19,13 @@
   },
   "scripts": {
     "prepublish": "babel -d lib src",
-    "postinstall": "jspm install",
+    "pretest": "jspm install",
     "test": "karma start --single-run"
   },
   "jspm": {
-    "main": "src/index",
+    "registry": "jspm",
     "format": "es6",
+    "main": "index",
     "directories": {
       "lib": "src"
     },
