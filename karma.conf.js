@@ -10,7 +10,7 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jspm', 'jasmine'],
+        frameworks: ['jspm', 'mocha'],
 
         jspm: {
             // Edit this to your needs
@@ -57,7 +57,7 @@ module.exports = function (config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: [
-            'Chrome',
+            // 'Chrome',
             'Firefox'
         ],
 

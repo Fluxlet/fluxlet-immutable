@@ -1,10 +1,12 @@
+import chai, { expect } from 'chai'
+
 import { update } from "src/update"
 
 describe("update", () => {
 
     const updateTest = update(['test'], "changed")
 
-    var state
+    let state
 
     beforeEach(() => {
         state = {
@@ -26,100 +28,100 @@ describe("update", () => {
     })
 
     it("accepts a value function", () => {
-        var newState = update(["key1"], () => "changed")(state)
-        expect(newState.key1).toBe("changed")
+        const newState = update(["key1"], () => "changed")(state)
+        expect(newState.key1).to.equal("changed")
     })
 
     it("accepts a plain value", () => {
-        var newState = update(["key1"], "changed")(state)
-        expect(newState.key1).toBe("changed")
+        const newState = update(["key1"], "changed")(state)
+        expect(newState.key1).to.equal("changed")
     })
 
     it("accepts a single segment string path", () => {
-        var newState = update("key1", "changed")(state)
-        expect(newState.key1).toBe("changed")
+        const newState = update("key1", "changed")(state)
+        expect(newState.key1).to.equal("changed")
     })
 
     it("accepts a multiple segment string path", () => {
-        var newState = update("keyArray.3.deepKey", "changed")(state)
-        expect(newState.keyArray[3].deepKey).toBe("changed")
+        const newState = update("keyArray.3.deepKey", "changed")(state)
+        expect(newState.keyArray[3].deepKey).to.equal("changed")
     })
 
     it("sets 1st level property and clones state given in single segment path", () => {
-        var newState = update(["key1"], "changed")(state)
-        expect(newState).not.toBe(state)
-        expect(newState.key1).toBe("changed")
-        expect(newState.keyObject).toBe(state.keyObject)
-        expect(newState.keyArray).toBe(state.keyArray)
+        const newState = update(["key1"], "changed")(state)
+        expect(newState).not.to.equal(state)
+        expect(newState.key1).to.equal("changed")
+        expect(newState.keyObject).to.equal(state.keyObject)
+        expect(newState.keyArray).to.equal(state.keyArray)
     })
 
     it("sets 2nd level property and clones ancestors given in two segment path", () => {
-        var newState = update(["keyObject", "keyB"], "changed")(state)
-        expect(newState).not.toBe(state)
-        expect(newState.keyObject).not.toBe(state.keyObject)
-        expect(newState.keyObject.keyA).toBe(state.keyObject.keyA)
-        expect(newState.keyObject.keyB).toBe("changed")
+        const newState = update(["keyObject", "keyB"], "changed")(state)
+        expect(newState).not.to.equal(state)
+        expect(newState.keyObject).not.to.equal(state.keyObject)
+        expect(newState.keyObject.keyA).to.equal(state.keyObject.keyA)
+        expect(newState.keyObject.keyB).to.equal("changed")
     })
 
     it("sets deep property and clones ancestors", () => {
-        var newState = update(["keyArray", 3, "deepKey"], "changed")(state)
-        expect(newState).not.toBe(state)
-        expect(newState.keyObject).toBe(state.keyObject)
-        expect(newState.keyArray).not.toBe(state.keyArray)
-        expect(newState.keyArray[0]).toBe(state.keyArray[0])
-        expect(newState.keyArray[3]).not.toBe(state.keyArray[3])
-        expect(newState.keyArray[3].deepKey).toBe("changed")
+        const newState = update(["keyArray", 3, "deepKey"], "changed")(state)
+        expect(newState).not.to.equal(state)
+        expect(newState.keyObject).to.equal(state.keyObject)
+        expect(newState.keyArray).not.to.equal(state.keyArray)
+        expect(newState.keyArray[0]).to.equal(state.keyArray[0])
+        expect(newState.keyArray[3]).not.to.equal(state.keyArray[3])
+        expect(newState.keyArray[3].deepKey).to.equal("changed")
     })
 
     it("deletes a property given an undefined value", () => {
-        var newState = update(["key1"], undefined)(state)
-        expect(newState.key1).toBeUndefined()
-        expect(newState.hasOwnProperty("key1")).toBe(false)
+        const newState = update(["key1"], undefined)(state)
+        expect(newState.key1).to.be.undefined
+        expect(newState.hasOwnProperty("key1")).to.be.false
     })
 
     it("throws an error for an empty path", () => {
-        expect(() => update([], "changed")(state)).toThrowError()
+        expect(() => update([], "changed")(state)).to.throw(TypeError)
     })
 
     it("throws an error for a null state", () => {
-        expect(() => updateTest(null)).toThrowError()
+        expect(() => updateTest(null)).to.throw(TypeError)
     })
 
     it("throws an error for an undefined state", () => {
-        expect(() => updateTest(undefined)).toThrowError()
+        expect(() => updateTest(undefined)).to.throw(TypeError)
     })
 
     it("throws an error for a string state", () => {
-        expect(() => updateTest("foo")).toThrowError()
+        expect(() => updateTest("foo")).to.throw(TypeError)
     })
 
     it("throws an error for a number state", () => {
-        expect(() => updateTest(10)).toThrowError()
+        expect(() => updateTest(10)).to.throw(TypeError)
     })
 
     it("throws an error for a boolean state", () => {
-        expect(() => updateTest(true)).toThrowError()
+        expect(() => updateTest(true)).to.throw(TypeError)
     })
 
     it("to add missing object property", () => {
-        expect(update(["nothere"], "added")({ "here": "this" }).nothere).toBe("added")
+        expect(update(["nothere"], "added")({ "here": "this" }).nothere).to.equal("added")
     })
 
     it("to add missing array item", () => {
-        expect(update([3], "added")([ "zero", "one" ])[3]).toBe("added")
+        expect(update([3], "added")([ "zero", "one" ])[3]).to.equal("added")
     })
 
     it("passes current value and root to value function", () => {
-      var newState = update("keyArray.3.deepKey", (value, root) => {
-          expect(value).toBe("ok")
-          expect(root).toBe(state)
+      const newState = update("keyArray.3.deepKey", (value, root) => {
+          expect(value).to.equal("ok")
+          expect(root).to.equal(state)
           return state.key1
       })(state)
-      expect(newState.keyArray[3].deepKey).toBe("one")
+      expect(newState.keyArray[3].deepKey).to.equal("one")
     })
 
     it("returns the same object if nothing changed", () => {
-      var newState = update(["key1"], val => val)(state)
-      expect(newState).toBe(state)
+      const newState = update(["key1"], val => val)(state)
+      expect(newState).to.equal(state)
     })
 })
