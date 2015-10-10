@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/Fluxlet/fluxlet-immutable.svg?branch=master)](https://travis-ci.org/Fluxlet/fluxlet-immutable)
+[![npm version](https://img.shields.io/npm/v/fluxlet-immutable.svg)](https://www.npmjs.com/package/fluxlet-immutable)
+[![Dependency Status](https://david-dm.org/fluxlet/fluxlet-immutable.svg)](https://david-dm.org/fluxlet/fluxlet-immutable)
+[![devDependency Status](https://david-dm.org/fluxlet/fluxlet-immutable/dev-status.svg)](https://david-dm.org/fluxlet/fluxlet-immutable#info=devDependencies)
+[![License](https://img.shields.io/github/license/fluxlet/fluxlet-immutable.svg)](LICENSE)
+
 # Fluxlet Immutable State Utilities
 
 Provides some handy functions for working with immutable state in Fluxlet.

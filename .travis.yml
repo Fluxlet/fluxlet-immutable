@@ -1,9 +1,14 @@
 language: node_js
+
 node_js:
   - "4.1"
+
+env:
+  global:
+  - secure: "1v5Cog9UI7oO0SrEEQzyrfWVdlvpcXaf9A59iE8HahBz53oJu8GkBNPJamGfgF3gSExlL8BSbPhU3yuEM1WN23JGbHnJHF8tmCGQ0eDc5vUG2PL4dXcBKr5vvASzS7wm7VN5IniOEA58WuRwQF4XYQluk2hKJqgKq2VxoZwGu2giBpSAjafZkXZ5+PDXXh5pwPRjfoM7r+3m7eP6LtWyCA96xe+dxtRkxYMYpJclrfqBJ+uVvbezSOlmA8aptOLZBCYHb7LIfM8p7XD6e0Ku6rocW1rMT9AC323A/Q99L2QME6TJMJNLaV4BoOaAZawRH9TthmmPWXSmzJ4JvCVd0ZlPGR4MAp5J7m7nNGZYimJ2djPLoWTH3ZOOPOPtFQb/gc9y3S0m7V8WQUUWL++DzLLSZXhHZnNfj5WZVbgciIGIpMkbQmSHSY1Yc+Cgjzt2o6cIzfXaVQctremGh1ZkTxp6/h3aj7mG9Rp2PHpV7aEbwHMzko21KDiW7GKnkSdCnTDb4geNBo9+dIVEqee87W0V77tSjOZjnT2vnsRxJa+Pg24B1P5zzzlHS0vdSt5rQAWVyJ+RgGDkmPPnozNYESvTWz11/7EfQBc0qQPn7+m3PaYWZy8gYXgtjPf4lP/Nri5y/imKcp4EcjyLig9R++JpAagv7vGI+EIAJtbEQes="
+
 before_install:
-  - 'npm install --global jspm@beta'
-  - 'jspm --version'
-  - 'jspm config registries.github.auth "$JSPM_GITHUB_AUTH_TOKEN"'
+  - npm install -g jspm
+  - jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
   - export DISPLAY=:99.0
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
