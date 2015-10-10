@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prepublish": "babel -d lib src",
-    "pretest": "jspm install",
+    "pretest": "jspm install -y",
     "test": "karma start --single-run"
   },
   "jspm": {
