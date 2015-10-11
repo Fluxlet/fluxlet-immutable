@@ -25,3 +25,12 @@ Clone an object/array with a mutated property/element, used by update but may al
 ## freeze
 
 Perform shallow and deep freezes of objects/arrays.
+
+## get
+
+Get nested values from a structure given a path.
+
+## map
+
+Some variations on the traditional map functions, but specifically designed to
+work with the update function.
