@@ -31,9 +31,7 @@ import { get } from "./get"
 // This returns a new state with a new numbers array that has all items
 // multiplied by 2
 //
-export function map(iteratee) {
-  return (array, state) => doMap(iteratee, array, array, state)
-}
+export const map = (iteratee) => doMap(iteratee)
 
 // # mapIf
 //
@@ -61,9 +59,7 @@ export function map(iteratee) {
 //
 // All positive numbers will be multiplied by 2, negative numbers are unchanged
 //
-export function mapIf(predicate, iteratee) {
-  return (array, state) => doMap(iteratee, array, array, state, predicate)
-}
+export const mapIf = (predicate, iteratee) => doMap(iteratee, undefined, predicate)
 
 // # mapFrom
 //
@@ -96,31 +92,33 @@ export function mapIf(predicate, iteratee) {
 //
 // A new state is returned with a new results array containing the
 //
-export function mapFrom(source, iteratee) {
-  return (target, state) => doMap(iteratee, get(source)(state), target, state)
-}
+export const mapFrom = (source, iteratee) => doMap(iteratee, source)
 
-function doMap(iteratee, source, target, state, predicate) {
-  let result
+function doMap(iteratee, source, predicate) {
+  return (target, state) => {
+    source = source ? get(source)(state) : target
 
-  source.forEach((item, index) => {
-    const newItem = !predicate || predicate(item, index, state)
-        ? iteratee(item, index, state)
-        : item
+    let result
 
-    // On the first different new item construct the resultant array from
-    // a slice of the target array up to the current index
-    if (!result && newItem !== target[index]) {
-      result = target.slice(0, index);
-    }
+    source.forEach((item, index) => {
+      const newItem = !predicate || predicate(item, index, state)
+          ? iteratee(item, index, state)
+          : item
 
-    // Add new item to the new result array if we have one
-    if (result) {
-      result.push(newItem)
-    }
-  })
+      // On the first different new item construct the resultant array from
+      // a slice of the target array up to the current index
+      if (!result && newItem !== target[index]) {
+        result = target.slice(0, index);
+      }
 
-  // If got no different items from the iteratee then result will be
-  // undefined so we return the target
-  return result || target
+      // Add new item to the new result array if we have one
+      if (result) {
+        result.push(newItem)
+      }
+    })
+
+    // If got no different items from the iteratee then result will be
+    // undefined so we return the target
+    return result || target
+  }
 }
