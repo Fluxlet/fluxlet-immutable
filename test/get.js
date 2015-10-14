@@ -37,21 +37,7 @@ describe("get", () => {
     expect(() => get("dot.here")(STATE)).to.throw(Error)
   })
 
-  it("does not accept non function/string/array source", () => {
-    expect(() => get(null)).to.throw(TypeError)
-    expect(() => get()).to.throw(TypeError)
-    expect(() => get(true)).to.throw(TypeError)
-    expect(() => get(false)).to.throw(TypeError)
-    expect(() => get(0)).to.throw(TypeError)
-    expect(() => get(1)).to.throw(TypeError)
-    expect(() => get(new Date)).to.throw(TypeError)
-    expect(() => get({})).to.throw(TypeError)
-    expect(() => get(NaN)).to.throw(TypeError)
-    expect(() => get(Infinity)).to.throw(TypeError)
-  })
-
-  it("does not accept empty path", () => {
-    expect(() => get("")).to.throw(TypeError)
-    expect(() => get([])).to.throw(TypeError)
+  it("throws error if it can not walk the entire path", () => {
+    expect(() => get("keyArray.1.not.here")(STATE)).to.throw(TypeError)
   })
 })

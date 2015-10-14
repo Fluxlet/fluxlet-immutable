@@ -1,3 +1,4 @@
+export * from "./path"
 export * from "./update"
 export * from "./clone"
 export * from "./chain"

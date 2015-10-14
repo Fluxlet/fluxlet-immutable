@@ -94,9 +94,9 @@ export const mapIf = (predicate, iteratee) => doMap(iteratee, undefined, predica
 //
 export const mapFrom = (source, iteratee) => doMap(iteratee, source)
 
-function doMap(iteratee, source, predicate) {
+function doMap(iteratee, pathOrSupplier, predicate) {
   return (target, state) => {
-    source = source ? get(source)(state) : target
+    const source = pathOrSupplier ? get(pathOrSupplier)(state) : target
 
     let result
 
