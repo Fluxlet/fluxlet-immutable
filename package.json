@@ -1,6 +1,6 @@
 {
   "name": "fluxlet-immutable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Immutable state utilities for Fluxlet",
   "main": "lib/index",
   "registry": "jspm",
